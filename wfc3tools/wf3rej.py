@@ -35,15 +35,13 @@ def wf3rej(input, output="", crrejtab="", scalense="", initgues="",
         raise IOError("wf3rej does not accept association tables")
     if len(parseinput.irafglob(input)) == 0:
         raise IOError("No valid image specified")
-    if len(parseinput.irafglob(input)) > 1:
-        raise IOError("wf3rej can only accept 1 file for"
-                      "input at a time: {0}".format(infiles))
 
     for image in infiles:
         if not os.path.exists(image):
             raise IOError("Input file not found: {0}".format(image))
 
-    call_list.append(input)
+    input_string_list = ','.join(input)
+    call_list.append(input_string_list)
 
     if output:
         call_list.append(str(output))
